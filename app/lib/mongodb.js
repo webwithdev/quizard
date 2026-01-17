@@ -3,9 +3,7 @@ import { MongoClient } from "mongodb";
 const uri = process.env.MONGODB_URI;
 let client = new MongoClient(uri)
 
-if (!uri) {
-  throw new Error("❌ MONGODB_URI is not defined");
-}
+
 
 const options = {};
 
