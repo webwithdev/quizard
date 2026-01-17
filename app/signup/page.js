@@ -13,25 +13,25 @@ const Page = () => {
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-const [correct, setCorrect] = useState("")
+  const [correct, setCorrect] = useState("")
 
 
-useEffect(() => {
-      fetch("/api/me",)
-        .then(res => {
-          console.log("STATUS:", res.status)
-          if (res.ok) {
-        window.location.href = "/main";
-      }
-          return res.json()
-        })
-        .then(data => {
-         
-        })
-       
-        .catch(err => console.log("FETCH ERROR:", err))
-        
-    }, [])
+  useEffect(() => {
+    fetch("/api/me",)
+      .then(res => {
+        console.log("STATUS:", res.status)
+        if (res.ok) {
+          window.location.href = "/main";
+        }
+        return res.json()
+      })
+      .then(data => {
+
+      })
+
+      .catch(err => console.log("FETCH ERROR:", err))
+
+  }, [])
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -54,9 +54,9 @@ useEffect(() => {
     } else {
       setPasswordError("");
     }
-   
- 
- 
+
+
+
     // ❌ Stop if any error
     if (hasError) return;
 
@@ -67,171 +67,172 @@ useEffect(() => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "name":name,
-        "email":email,
-        "password":password,
+        "name": name,
+        "email": email,
+        "password": password,
       }),
     })
       .then((res) => {
-        setTimeout(() => {
-          setCorrect("Successfull")
-        }, 500);
-        setTimeout(() => {
-          window.location=("/main")
-        },1000 );
-        if (!res.ok) throw new Error("Failed");
-        if(res.ok){
-
-          
-        window.location="/main"
-        
+        if (res.ok) {
+          setTimeout(() => {
+            setCorrect("Successfull")
+          }, 500);
+          setTimeout(() => {
+            window.location = ("/main")
+          }, 1000);
         }
-        
+
+        if (!res.ok) {
+          setEmailError("Email already exists!")
+          hasError = true
+          throw new Error("Failed");
+        }
+
         return res.json();
       })
-      
+
       .catch((err) => {
         console.error(err);
         // ❌ don't clear form
       });
   };
 
-  
+
 
   return (
-  <div className={`relative min-h-screen bg-[#050609] flex items-center justify-center overflow-hidden ${inter.className}`}>
-    {/* Glowing green wave background */}
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Wave 1 */}
-      <div className="absolute -top-[40%] left-0 h-[800px] w-full opacity-20">
-        <div className="h-full w-full animate-wave-1 bg-gradient-to-r from-transparent via-[#07F054]/30 to-transparent blur-[80px]" 
-             style={{ clipPath: 'ellipse(60% 50% at 50% 50%)' }}
-        />
-      </div>
-      
-      {/* Wave 2 */}
-      <div className="absolute -bottom-[30%] right-0 h-[600px] w-full opacity-15">
-        <div className="h-full w-full animate-wave-2 bg-gradient-to-l from-transparent via-[#07F054]/40 to-transparent blur-[90px]"
-             style={{ clipPath: 'ellipse(50% 40% at 50% 50%)' }}
-        />
-      </div>
-      
-      {/* Center pulse */}
-      <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 opacity-10">
-        <div className="h-full w-full animate-pulse-glow rounded-full bg-[#07F054]/30 blur-[120px]" />
-      </div>
-
-      {/* Diagonal sweep */}
-      <div className="absolute top-1/4 -right-[20%] h-[700px] w-[700px] opacity-12">
-        <div className="h-full w-full animate-wave-3 bg-gradient-to-br from-[#07F054]/25 via-transparent to-[#07F054]/20 blur-[100px]" />
-      </div>
-    </div>
-
-    {/* Signup Card */}
-    <div className="relative z-10 w-full max-w-md px-6">
-      <div className="rounded-2xl border border-slate-800/80 bg-[#070b10]/90 p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-xl">
-        {/* Logo/Brand */}
-        <div className="mb-8 flex justify-center">
-          <div className="flex items-center gap-2.5">
-            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/fdd0b287-1af9-44cd-b7cd-9700fcae8e72.png" alt="No logo" className="h-12 w-12 rounded-xl bg-[#07F054]/20 ring-1 ring-[#7BD931]/50" />
-
-            <span className="text-xl font-bold tracking-[0.2em] uppercase text-slate-200">
-              Quizard
-            </span>
-          </div>
+    <div className={`relative min-h-screen bg-[#050609] flex items-center justify-center overflow-hidden ${inter.className}`}>
+      {/* Glowing green wave background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Wave 1 */}
+        <div className="absolute -top-[40%] left-0 h-[800px] w-full opacity-20">
+          <div className="h-full w-full animate-wave-1 bg-gradient-to-r from-transparent via-[#07F054]/30 to-transparent blur-[80px]"
+            style={{ clipPath: 'ellipse(60% 50% at 50% 50%)' }}
+          />
         </div>
 
-        <h1 className="mb-2 text-center text-3xl font-extrabold text-slate-50">
-          Create Account
-        </h1>
-        <p className="mb-8 text-center text-xs text-slate-400">
-          Join Quizard and start your quiz journey
-        </p>
+        {/* Wave 2 */}
+        <div className="absolute -bottom-[30%] right-0 h-[600px] w-full opacity-15">
+          <div className="h-full w-full animate-wave-2 bg-gradient-to-l from-transparent via-[#07F054]/40 to-transparent blur-[90px]"
+            style={{ clipPath: 'ellipse(50% 40% at 50% 50%)' }}
+          />
+        </div>
 
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-          {/* Name */}
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-300">
-              Full Name
-            </label>
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              required
-              placeholder="John Doe"
-              className="w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-100 placeholder-slate-500 shadow-sm transition-all duration-300 hover:border-slate-600 focus:border-[#07F054] focus:outline-none focus:ring-2 focus:ring-[#07F054]/30"
-            />
+        {/* Center pulse */}
+        <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 opacity-10">
+          <div className="h-full w-full animate-pulse-glow rounded-full bg-[#07F054]/30 blur-[120px]" />
+        </div>
+
+        {/* Diagonal sweep */}
+        <div className="absolute top-1/4 -right-[20%] h-[700px] w-[700px] opacity-12">
+          <div className="h-full w-full animate-wave-3 bg-gradient-to-br from-[#07F054]/25 via-transparent to-[#07F054]/20 blur-[100px]" />
+        </div>
+      </div>
+
+      {/* Signup Card */}
+      <div className="relative z-10 w-full max-w-md px-6">
+        <div className="rounded-2xl border border-slate-800/80 bg-[#070b10]/90 p-10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+          {/* Logo/Brand */}
+          <div className="mb-8 flex justify-center">
+            <div className="flex items-center gap-2.5">
+              <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/fdd0b287-1af9-44cd-b7cd-9700fcae8e72.png" alt="No logo" className="h-12 w-12 rounded-xl bg-[#07F054]/20 ring-1 ring-[#7BD931]/50" />
+
+              <span className="text-xl font-bold tracking-[0.2em] uppercase text-slate-200">
+                Quizard
+              </span>
+            </div>
           </div>
 
-          {/* Email */}
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-300">
-              Email Address
-            </label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              required
-              placeholder="you@example.com"
-              className="w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-100 placeholder-slate-500 shadow-sm transition-all duration-300 hover:border-slate-600 focus:border-[#07F054] focus:outline-none focus:ring-2 focus:ring-[#07F054]/30"
-            />
+          <h1 className="mb-2 text-center text-3xl font-extrabold text-slate-50">
+            Create Account
+          </h1>
+          <p className="mb-8 text-center text-xs text-slate-400">
+            Join Quizard and start your quiz journey
+          </p>
 
-            {emailError && (
-              <p className="mt-2 animate-slideFade text-xs font-medium text-red-400">
-                {emailError}
-              </p>
-            )}
-          </div>
+          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            {/* Name */}
+            <div>
+              <label className="mb-2 block text-xs font-semibold text-slate-300">
+                Full Name
+              </label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+                required
+                placeholder="John Doe"
+                className="w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-100 placeholder-slate-500 shadow-sm transition-all duration-300 hover:border-slate-600 focus:border-[#07F054] focus:outline-none focus:ring-2 focus:ring-[#07F054]/30"
+              />
+            </div>
 
-          {/* Password */}
-          <div>
-            <label className="mb-2 block text-xs font-semibold text-slate-300">
-              Password
-            </label>
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              required
-              placeholder="••••••••"
-              className="w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-100 placeholder-slate-500 shadow-sm transition-all duration-300 hover:border-slate-600 focus:border-[#07F054] focus:outline-none focus:ring-2 focus:ring-[#07F054]/30"
-            />
+            {/* Email */}
+            <div>
+              <label className="mb-2 block text-xs font-semibold text-slate-300">
+                Email Address
+              </label>
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                required
+                placeholder="you@example.com"
+                className="w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-100 placeholder-slate-500 shadow-sm transition-all duration-300 hover:border-slate-600 focus:border-[#07F054] focus:outline-none focus:ring-2 focus:ring-[#07F054]/30"
+              />
 
-            {passwordError && (
-              <p className="mt-2 animate-slideFade text-xs font-medium text-red-400">
-                {passwordError}
-              </p>
-            )}
-           <Link href="/login"> <span className=" text-xs text-[#07F054] w-full text-right ml-1">Already have a account?</span></Link>   </div>
-          {correct && (
+              {emailError && (
+                <p className="mt-2 ml-2 animate-slideFade text-xs font-medium text-red-400">
+                  {emailError}
+                </p>
+              )}
+            </div>
+
+            {/* Password */}
+            <div>
+              <label className="mb-2 block text-xs font-semibold text-slate-300">
+                Password
+              </label>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                required
+                placeholder="••••••••"
+                className="w-full rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-100 placeholder-slate-500 shadow-sm transition-all duration-300 hover:border-slate-600 focus:border-[#07F054] focus:outline-none focus:ring-2 focus:ring-[#07F054]/30"
+              />
+
+              {passwordError && (
+                <p className="mt-2 ml-2  animate-slideFade text-xs font-medium text-red-400">
+                  {passwordError}
+                </p>
+              )}
+              <Link href="/login"> <span className=" text-xs text-[#07F054] w-full text-right ml-1">Already have a account?</span></Link>   </div>
+            {correct && (
               <p className="animate-slideFade text-center text-sm font-semibold text-[#07F054] drop-shadow-[0_0_10px_rgba(7,240,84,0.8)]">
                 {correct}
               </p>
             )}
 
-          <button
-            type="submit"
-            onClick={handleSignUp}
-            className="group relative mt-6 flex w-full items-center justify-center overflow-hidden rounded-xl bg-[#07F054] px-6 py-3.5 text-sm font-bold text-black shadow-[0_0_40px_rgba(7,240,84,0.7)] transition-all duration-500 hover:scale-[1.02] hover:bg-[#06d949] hover:shadow-[0_0_60px_rgba(7,240,84,1)] active:scale-[0.98]"
-          >
-            <span className="relative z-10">Sign Up</span>
-            
-            {/* Background glow */}
-            <span className="pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-[#07F054]/50 via-[#06d949]/40 to-[#07F054]/50 blur-xl transition-all duration-500 group-hover:blur-2xl" />
-            
-            {/* Shimmer effect */}
-            <span className="pointer-events-none absolute inset-0 -z-10 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]" />
-            
-            {/* Pulse ring */}
-            <span className="pointer-events-none absolute inset-0 -z-20 rounded-xl bg-[#07F054] opacity-0 transition-opacity duration-300 group-hover:animate-ping group-hover:opacity-20" />
-          </button>
-        </form>
-      </div>
-    </div>
+            <button
+              type="submit"
+              onClick={handleSignUp}
+              className="group relative mt-6 flex w-full items-center justify-center overflow-hidden rounded-xl bg-[#07F054] px-6 py-3.5 text-sm font-bold text-black shadow-[0_0_40px_rgba(7,240,84,0.7)] transition-all duration-500 hover:scale-[1.02] hover:bg-[#06d949] hover:shadow-[0_0_60px_rgba(7,240,84,1)] active:scale-[0.98]"
+            >
+              <span className="relative z-10">Sign Up</span>
 
-    <style jsx>{`
+              {/* Background glow */}
+              <span className="pointer-events-none absolute inset-0 -z-10 rounded-xl bg-gradient-to-r from-[#07F054]/50 via-[#06d949]/40 to-[#07F054]/50 blur-xl transition-all duration-500 group-hover:blur-2xl" />
+
+              {/* Shimmer effect */}
+              <span className="pointer-events-none absolute inset-0 -z-10 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]" />
+
+              {/* Pulse ring */}
+              <span className="pointer-events-none absolute inset-0 -z-20 rounded-xl bg-[#07F054] opacity-0 transition-opacity duration-300 group-hover:animate-ping group-hover:opacity-20" />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <style jsx>{`
       .animate-slideFade {
         animation: slideFade 0.4s ease-out;
       }
@@ -300,8 +301,8 @@ useEffect(() => {
         animation: pulse-glow 10s ease-in-out infinite;
       }
     `}</style>
-  </div>
-)
+    </div>
+  )
 
 };
 
