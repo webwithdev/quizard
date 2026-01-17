@@ -16,22 +16,6 @@ const Page = () => {
   const [correct, setCorrect] = useState("")
 
 
-  useEffect(() => {
-    fetch("/api/me",)
-      .then(res => {
-        console.log("STATUS:", res.status)
-        if (res.ok) {
-          window.location.href = "/main";
-        }
-        return res.json()
-      })
-      .then(data => {
-
-      })
-
-      .catch(err => console.log("FETCH ERROR:", err))
-
-  }, [])
 
   const handleSignUp = (e) => {
     e.preventDefault();
