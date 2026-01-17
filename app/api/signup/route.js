@@ -31,7 +31,7 @@ export async function POST(request) {
       .find({}, { projection: { email: 1, _id: 0 } })
       .toArray();
 
-    let count
+    let count=1
     for (let i = 0; i < users.length; i++) {
       if (body.email === users[i].email) {
         count = 0;
@@ -39,16 +39,15 @@ export async function POST(request) {
       }
       count = 1
     }
-    if (count == 0) {
+    if (count === 0) {
       console.log(count);
       return new Response(JSON.stringify({ error: "Email already exists" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
-    if(count=1){
     await db.collection("users").insertOne({
       username:body.name,
       email: body.email,
       password: hashedPassword
-    })}
+    })
   
     return new Response(JSON.stringify({ message: "Data inserted!" }), { status: 200, headers: { "Content-Type": "application/json" } });
 
