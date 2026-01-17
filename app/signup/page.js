@@ -72,29 +72,30 @@ const Page = () => {
         "password": password,
       }),
     })
-      .then((res) => {
+
+      .then(async (res) => {
         if (res.ok) {
+          setCorrect("Successful");
           setTimeout(() => {
-            setCorrect("Successfull")
-          }, 500);
-          setTimeout(() => {
-            window.location = ("/main")
+            window.location.href = "/main";
           }, 1000);
+          return;
         }
 
-        if (!res.ok) {
-          setEmailError("Email already exists!")
-          hasError = true
-          throw new Error("Failed");
-        }
+        // handle error response safely
+        const data = await res.json().catch(() => null);
 
-        return res.json();
+        if (res.status === 409) {
+          setEmailError("Email already exists!");
+        } else {
+          setEmailError("Signup failed. Try again.");
+        }
       })
-
       .catch((err) => {
-        console.error(err);
-        // ❌ don't clear form
+        console.error("Signup error:", err);
+        setEmailError("Network error. Please try again.");
       });
+
   };
 
 
