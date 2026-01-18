@@ -64,7 +64,7 @@ export default function StartClient(){
           method: "GET",
         })
         console.log(res.status)
-      if (res?.ok) {
+      if (res.ok) {
         const datax = await res.json();
         
         
@@ -72,10 +72,7 @@ export default function StartClient(){
       }
       else {
         setTimeout(() => {
-
-          if (!res?.status) {
             location.reload()
-          }
         }, 2000);
       }
     }
