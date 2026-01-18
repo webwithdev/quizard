@@ -40,7 +40,7 @@ const page = () => {
       }),
     })
  if (res?.ok) {
-  router.push(`/quiz/start?category=${selectcategory}&difficulty=${difficulty}&count=${questioncount}&categorytype=${categorynum}`);
+  router.push(`/quiz/start?category=${selectcategory}&difficulty=${difficulty}&count=${questioncount}&categorytype=${categorynumber}`);
  }
  
   }
