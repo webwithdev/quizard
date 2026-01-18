@@ -68,14 +68,10 @@ export default function StartClient() {
         const datax = await res.json();
         setdata(datax.results)
       }
-      else {
-        setTimeout(() => {
-          location.reload()
-        }, 1000);
-      }
+      
     }
     Getdata()
-  }, [difficulty])
+  }, [count, categorynum, difficulty])
 
 
 
