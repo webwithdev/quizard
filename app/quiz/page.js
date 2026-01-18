@@ -39,13 +39,10 @@ const page = () => {
         "count":questioncount
       }),
     })
- if (res.ok) {
+ if (res?.ok) {
   router.push(`/quiz/start?category=${selectcategory}&difficulty=${difficulty}&count=${questioncount}&categorytype=${categorynum}`);
  }
-  if (!res.ok) {
-    console.log("hhahaa")
-    
-  }
+ 
   }
   }
 
