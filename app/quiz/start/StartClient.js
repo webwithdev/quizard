@@ -90,11 +90,11 @@ export default function StartClient(){
         return res.json();
       })
       .then(data => {
-        if (!data.name) {
+        if (!data?.name) {
           window.location.href = "/login"
         }
         else
-          setUsernamee(data.name || "");
+          setUsernamee(data?.name || "");
       })
       .catch(err => console.log("FETCH ERROR:", err));
   }, []);
