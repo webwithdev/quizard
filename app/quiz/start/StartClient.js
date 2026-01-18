@@ -63,9 +63,10 @@ export default function StartClient(){
         {
           method: "GET",
         })
+        console.log(res.status)
       if (res?.ok) {
         const datax = await res.json();
-        console.log(res.status)
+        
         
         setdata(datax.results)
       }
