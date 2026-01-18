@@ -67,8 +67,6 @@ export default function StartClient() {
       console.log(res.status)
       if (res.ok) {
         const datax = await res.json();
-        console.log(datax)
-        
         setdata(datax.results)
       }
       else {
@@ -78,7 +76,7 @@ export default function StartClient() {
       }
     }
     Getdata()
-  }, [])
+  }, [count, categorynum, difficulty])
 
 
 
