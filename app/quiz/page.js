@@ -51,11 +51,11 @@ const page = () => {
   useEffect(() => {
     fetch("/api/me", { credentials: "include" })
       .then(res => {
-        console.log("STATUS:", res.status);
+        
         return res.json();
       })
       .then(data => {
-        console.log("DATA:", data);
+       
         if (!data.name) {
         window.location.href="/login"
       }
