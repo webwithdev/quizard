@@ -41,7 +41,7 @@ export async function POST(request) {
     if (existingUser) {
       return Response.json(
         { error: "Email already exists" },
-        { status: 400 }
+        { status: 409 }
       );
     }
 
@@ -53,7 +53,7 @@ export async function POST(request) {
       name,
       email,
       password: hashedPassword,
-      
+      createdAt: new Date()
     });
 
     return Response.json(
