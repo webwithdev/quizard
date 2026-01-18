@@ -1,14 +1,14 @@
 import { MongoClient } from "mongodb";
 
+if (!process.env.MONGODB_URI) {
+  throw new Error("MONGODB_URI not defined");
+}
+
 const uri = process.env.MONGODB_URI;
-let client = new MongoClient(uri)
-
-
-
 const options = {};
 
+let client;
 let clientPromise;
-
 
 if (process.env.NODE_ENV === "development") {
   if (!global._mongoClientPromise) {
@@ -17,10 +17,8 @@ if (process.env.NODE_ENV === "development") {
   }
   clientPromise = global._mongoClientPromise;
 } else {
-
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
 
 export default clientPromise;
-
