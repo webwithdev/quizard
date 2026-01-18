@@ -50,7 +50,7 @@ export async function POST(request) {
 
     // ✅ 5. INSERT USER
     await db.collection("users").insertOne({
-      username,
+      name,
       email,
       password: hashedPassword,
       createdAt: new Date()
