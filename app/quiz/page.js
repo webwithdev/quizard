@@ -16,6 +16,7 @@ const page = () => {
   const [difficulty, setdifficulty] = useState("")
   const [questioncount, setquestioncount] = useState(0)
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [categorynumber, setCategorynumber] = useState(0)
 
   const router = useRouter()
 
