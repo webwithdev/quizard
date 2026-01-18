@@ -69,7 +69,10 @@ export default function StartClient() {
         setdata(datax.results)
       }
       if (res.status==429) {
-        location.reload()
+        setTimeout(() => {
+          location.reload()
+        }, 1000);
+        
       }
     }
     Getdata()
