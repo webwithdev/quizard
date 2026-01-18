@@ -57,12 +57,6 @@ export default function StartClient() {
   const [Wrong, setWrong] = useState(0)
 
 
-  useEffect(() => {
-    setTimeout(() => {
-      
-    location.reload()
-    }, 500);
-  }, [])
 
   useEffect(() => {
     async function Getdata() {
