@@ -11,7 +11,7 @@ import Link from 'next/link'
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
 
-export default function StartClient(){
+export default function StartClient() {
   const searchParams = useSearchParams()
 
 
@@ -58,31 +58,39 @@ export default function StartClient(){
 
 
   useEffect(() => {
+    setTimeout(() => {
+      
+    location.reload()
+    }, 500);
+  }, [])
+
+  useEffect(() => {
     async function Getdata() {
       const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categorynum}&difficulty=${newdifficulty}&type=multiple`,
         {
           method: "GET",
         })
-        console.log(res.status)
+      console.log(res.status)
       if (res.ok) {
         const datax = await res.json();
         setdata(datax.results)
       }
       else {
         setTimeout(() => {
-            location.reload()
-        }, 2000);
+          location.reload()
+        }, 1000);
       }
     }
     Getdata()
   }, [])
 
 
+
   useEffect(() => {
     fetch("/api/me", { credentials: "include" })
       .then(res => {
-       
-     return res.json();
+
+        return res.json();
       })
       .then(data => {
         if (!data?.name) {
@@ -94,7 +102,7 @@ export default function StartClient(){
       .catch(err => console.log("FETCH ERROR:", err));
   }, []);
 
-  
+
   // NEW: Shuffle answers when question changes
   useEffect(() => {
     if (data && data[questionnumber]) {
@@ -443,13 +451,13 @@ export default function StartClient(){
 
             {/* Buttons (same style as quiz buttons) */}
             <div className="flex gap-3 pt-2">
-             
+
 
               <Link
                 href="/main"
                 className="w-full rounded-lg bg-[#07F054] px-5 py-3 text-sm font-bold text-black 
              shadow-[0_0_30px_rgba(7,240,84,0.6)] transition hover:scale-[1.02]
-             flex items-center justify-center" onClick={handleSubmit }
+             flex items-center justify-center" onClick={handleSubmit}
               >
                 Submit Quiz
               </Link>
