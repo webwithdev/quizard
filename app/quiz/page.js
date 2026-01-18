@@ -16,7 +16,6 @@ const page = () => {
   const [difficulty, setdifficulty] = useState("")
   const [questioncount, setquestioncount] = useState(0)
   const [openDropdown, setOpenDropdown] = useState(null)
-  const [categorynumber, setCategorynumber] = useState(0)
 
   const router = useRouter()
 
@@ -39,10 +38,10 @@ const page = () => {
         "count":questioncount
       }),
     })
- if (res?.ok) {
-  router.push(`/quiz/start?category=${selectcategory}&difficulty=${difficulty}&count=${questioncount}&categorytype=${categorynumber}`);
+ if (res.ok) {
+  router.push(`/quiz/start?category=${selectcategory}&difficulty=${difficulty}&count=${questioncount}&categorytype=${categorynum}`);
  }
- 
+  
   }
   }
 
@@ -68,10 +67,11 @@ const page = () => {
 
   const categories = ["General Knowledge", "Entertainment: Books", "Entertainment: Film", "Entertainment: Music", "Entertainment: Musicals & Theatres", "Entertainment: Television", "Entertainment: Video Games", "Entertainment: Board Games", "Science & Nature", "Science: Computers", "Science: Mathematics", "Mythology", "Sports", "Geography", "History", "Politics", "Art", "Celebrities", "Animals", "Vehicles", "Entertainment: Comics", "Science: Gadgets", "Entertainment: Japanese Anime & Manga", "Entertainment: Cartoon & Animations"]
   
-
+ let categorynum
  for (let i = 0; i < categories.length; i++) {
   if(selectcategory==categories[i]){
-    setCategorynumber(i+9)
+    categorynum=i+9
+    console.log(categorynum)
     
   }
  }
