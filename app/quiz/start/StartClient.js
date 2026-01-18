@@ -75,7 +75,7 @@ export default function StartClient() {
       }
     }
     Getdata()
-  }, [count, categorynum, difficulty])
+  }, [difficulty])
 
 
 
