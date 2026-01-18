@@ -22,11 +22,8 @@ const page = () => {
 
 
   const handleclick=async()=> {
-    if (!selectcategory || !questioncount || !difficulty) {
-    alert("Please select all manually⚠️")
-    window.location.href="/quiz"
-  }
-  else{
+    
+  {
    const res= await fetch("/api/quiz", {
       method: "POST",
       headers: {
@@ -72,7 +69,6 @@ const page = () => {
  for (let i = 0; i < categories.length; i++) {
   if(selectcategory==categories[i]){
     categorynum=i+9
-    console.log(categorynum)
     
   }
  }
