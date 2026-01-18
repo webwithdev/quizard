@@ -70,7 +70,7 @@ export default function StartClient(){
       else {
         setTimeout(() => {
 
-          if (res.status == 429) {
+          if (res.status>300) {
             location.reload()
           }
         }, 2000);
