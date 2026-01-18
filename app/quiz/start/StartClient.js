@@ -83,11 +83,8 @@ export default function StartClient(){
   useEffect(() => {
     fetch("/api/me", { credentials: "include" })
       .then(res => {
-        console.log("STATUS:", res.status);
-
-
-
-        return res.json();
+       
+     return res.json();
       })
       .then(data => {
         if (!data?.name) {
