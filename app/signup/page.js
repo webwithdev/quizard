@@ -51,7 +51,7 @@ const Page = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "name": name,
+        "username": name,
         "email": email,
         "password": password,
       }),

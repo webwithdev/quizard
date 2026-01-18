@@ -18,7 +18,6 @@ export default function Dashboard() {
       })
       .then(data => {
         console.log("DATA:", data)
-        console.log(data.quizdata)
         
         setUsernamee(data.name || "")
         setQuizdata(data.quizdata )
