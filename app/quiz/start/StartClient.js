@@ -27,7 +27,7 @@ export default function StartClient() {
   const count = searchParams.get('count')
 
 
-  const [data, setdata] = useState("")
+  const [data, setdata] = useState([])
 
 
   const categorynum = searchParams.get('categorytype')
