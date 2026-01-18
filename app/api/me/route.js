@@ -32,7 +32,7 @@ export async function GET(request) {
 
     // 4️⃣ Return safe data
     return NextResponse.json({
-      name: user.username,
+      name: user.name,
       email: user.email,
       quizdata
     });

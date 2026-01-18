@@ -5,7 +5,8 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const { name, email, password } = body;
-
+ console.log(body)
+ 
     // ✅ 1. VALIDATION FIRST
     if (!name || !email || !password) {
       return Response.json(
