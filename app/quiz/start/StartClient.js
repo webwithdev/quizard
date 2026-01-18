@@ -68,7 +68,9 @@ export default function StartClient() {
         const datax = await res.json();
         setdata(datax.results)
       }
-      
+      if (res.status==429) {
+        location.reload()
+      }
     }
     Getdata()
   }, [count, categorynum, difficulty])
