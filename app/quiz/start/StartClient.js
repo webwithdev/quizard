@@ -63,14 +63,16 @@ export default function StartClient(){
         {
           method: "GET",
         })
-      if (res.ok) {
+      if (res?.ok) {
         const datax = await res.json();
+        console.log(res.status)
+        
         setdata(datax.results)
       }
       else {
         setTimeout(() => {
 
-          if (res.status>300) {
+          if (!res?.status) {
             location.reload()
           }
         }, 2000);
