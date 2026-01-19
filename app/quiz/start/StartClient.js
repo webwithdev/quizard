@@ -59,24 +59,27 @@ export default function StartClient() {
 
 
   useEffect(() => {
-    async function Getdata() {
-      const res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categorynum}&difficulty=${newdifficulty}&type=multiple`,
-        {
-          method: "GET",
-        })
-      if (res.ok) {
-        const datax = await res.json();
-        setdata(datax.results)
-      }
-      if (res.status==429) {
-        setTimeout(() => {
-          location.reload()
-        }, 1000);
-        
-      }
+  // 1. Define a helper to wait
+  const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+  async function Getdata() {
+    let res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categorynum}&difficulty=${newdifficulty}&type=multiple`);
+
+    // 2. If rate limited, wait 5 seconds and try ONE more time
+    if (res.status === 429) {
+      console.log("Rate limited. Retrying in 5 seconds...");
+      await delay(5000); 
+      res = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${categorynum}&difficulty=${newdifficulty}&type=multiple`);
     }
-    Getdata()
-  }, [count, categorynum, difficulty])
+
+    if (res.ok) {
+      const datax = await res.json();
+      setdata(datax.results);
+    }
+  }
+
+  Getdata();
+}, [count, categorynum, difficulty]);
 
 
 
