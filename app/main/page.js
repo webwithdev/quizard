@@ -74,6 +74,13 @@ export default function Dashboard() {
 
       {/* Main 3-div flex layout */}
       <main className="mx-auto max-w-7xl px-6 py-8">
+         {/* Greeting Message */}
+         <div className="mb-6 text-center">
+           <h2 className="text-3xl sm:text-4xl font-bold text-slate-100">
+             Hey <span className="text-[#07F054] drop-shadow-[0_0_20px_rgba(7,240,84,0.6)]">{usernamee}</span>! 👋
+           </h2>
+           <p className="mt-2 text-sm text-slate-400">Welcome back! Ready to challenge yourself today?</p>
+         </div>
          <h2 className=' text-xl font-semibold text-slate-300 text-center mb-4 sm:hidden'>Dashboard</h2>
         <div className="flex flex-col gap-5 lg:flex-row">
           {/* 1. Previous Quizzes (left) */}
